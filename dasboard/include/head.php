@@ -1,3 +1,18 @@
+
+<?php
+
+session_start();
+
+if(!isset($_SESSION['nama'])){
+  echo "
+  <script>
+    window.location.href='../login/'; 
+    alert('Harus Login terlebih dahulu!!'); 
+  </script>";
+}
+
+?>
+
 <!doctype html>
 <html lang="en" class="light-theme">
   <head>
@@ -6,11 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Favicon  -->
-    <link href="../assets/images/logo.png" rel="icon">
+    <link href="../assets/images/logo-tomohon.png" rel="icon">
 
-    <!-- loader-->
-	  <link href="../assets/css/pace.min.css" rel="stylesheet" />
-	  <script src="../assets/js/pace.min.js"></script>
+   
 
     <!--plugins-->
     <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
@@ -36,12 +49,12 @@
        <aside class="sidebar-wrapper" data-simplebar="true">
         <div class="sidebar-header">
           <div>
-            <img src="../assets/images/logo.png" class="logo-icon" alt="logo icon">
+            <img src="../assets/images/logo-tomohon.png" class="logo-icon" alt="logo icon">
           </div>
           <div>
-            <h4 class="logo-text">SIDP</h4>
+            <h4 class="logo-text text-success">SIDP</h4>
           </div>
-          <div class="toggle-icon ms-auto"><ion-icon name="menu-sharp"></ion-icon>
+          <div class="toggle-icon text-success ms-auto"><ion-icon name="menu-sharp"></ion-icon>
           </div>
         </div>
         <!--navigation-->
@@ -70,7 +83,7 @@
              <div class="top-navbar-right ms-auto">
 
               <ul class="navbar-nav align-items-center">
-                <li class="nav-item mobile-search-button">
+                <li class="nav-item mobile-search-button ">
                   <a class="nav-link" href="javascript:;">
                     <div class="">
                       <ion-icon name="search-sharp"></ion-icon>
@@ -82,17 +95,17 @@
                 <li class="nav-item dropdown dropdown-user-setting">
                   <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
                     <div class="user-setting">
-                      <img src="../assets/images/avatars/06.png" class="user-img" alt="">
+                      <img src="../assets/images/avatar/1.HEIC" class="user-img" alt="">
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                        <a class="dropdown-item" href="javascript:;">
                          <div class="d-flex flex-row align-items-center gap-2">
-                            <img src="../assets/images/avatars/06.png" alt="" class="rounded-circle" width="54" height="54">
+                            <img src="../assets/images/avatar/1.HEIC" alt="" class="rounded-circle" width="54" height="54">
                             <div class="">
-                              <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
-                              <small class="mb-0 dropdown-user-designation text-secondary">UI Developer</small>
+                              <h6 class="mb-0 dropdown-user-name">Edoedo</h6>
+                              <small class="mb-0 dropdown-user-designation text-secondary">Administrator</small>
                             </div>
                          </div>
                        </a>
@@ -109,7 +122,7 @@
                       
                       <li><hr class="dropdown-divider"></li>
                       <li>
-                        <a class="dropdown-item" href="javascript:;">
+                        <a class="dropdown-item" href="include/logout.php">
                            <div class="d-flex align-items-center">
                              <div class=""><ion-icon name="log-out-outline"></ion-icon></div>
                              <div class="ms-3"><span>Logout</span></div>
