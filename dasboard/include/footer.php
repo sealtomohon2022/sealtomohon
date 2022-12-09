@@ -5,7 +5,7 @@
 
 
         <!--start footer-->
-           <footer class="footer" style="position:fixed ;">
+           <footer class="footer position-fixed" >
             <div class="footer-text">
            &copy 2022 Kelompok SEAL Tomohon.
             </div>
@@ -36,8 +36,18 @@
     <script src="../assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
     <script src="../assets/plugins/chartjs/chart.min.js"></script>
     <script src="../assets/js/index.js"></script>
+    <script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../assets/js/table-datatable.js"></script>
+    <script src="../assets/js/component-popovers-tooltips.js"></script>
     <!-- Main JS-->
     <script src="../assets/js/main.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        $('#dt').DataTable();
+    });
+    </script>
 
 
   </body>

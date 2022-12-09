@@ -1,3 +1,10 @@
+<?php
+
+include "koneksi/koneksi.php";
+
+
+?>
+
 <!doctype html>
 <html lang="en" class="light-theme">
     <head>
@@ -31,31 +38,31 @@
 
 
             <!-- mulai navbar -->
-            <nav class="navbar navbar-expand-lg text-center shadow-sm rounded" style="background-color: white;">
+            <nav class="navbar navbar-expand-lg text-center shadow-sm" style="background-color: white;">
                 <div class="container p-2">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand ms-lg-4 ms-sm-3" href="#">
                       <img src="assets/images/logo-tomohon.png" width="60" height="60" >
                     </a>
-                    <a class="navbar-brand text-dark " href="#">
+                    <a class="navbar-brand text-dark me-sm-3 " href="#">
                       Sistem Informasi Dinas Pangan
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     
                     <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-justify"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></span>
-                    </button>
+                    </button> -->
                     <div class="collapse navbar-collapse" id="navbarNav">
 
                     <ul class="navbar-nav  ms-auto">
-                        <!-- <li class="nav-item me-3">
+                        <li class="nav-item me-3">
 
-                        <a class="nav-link text-dark" aria-current="page" href="#">
+                        <!-- <a class="nav-link text-dark" aria-current="page" href="#">
                         <div class="tab-icon"><ion-icon name="home-sharp" class="me-1"></ion-icon> Home
                         </div>
                         </a>
                         </li> -->
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                         <a class="nav-link text-white active m-2 bg-gradient-success radius-10 p-3 " href="login/"> Login</a>
-                        </li>
+                        </li> -->
                     </ul>
                     </div>
                 </div>
@@ -90,16 +97,84 @@
 
                   <div class="row">
 
+
+                  <?php 
+                  
+                  $data = mysqli_query($koneksi, "SELECT * FROM pangan");
+
+
+
+                  foreach($data as $d){
+
+                  
+                  
+                  ?>
                     
 
                     <div class="col-lg-4 col-md-6 col-sm-12 ">
                       <div class="card radius-10">
                         <div class="card-body">
-                          <img src="assets/images/products/5.jpg" class="imgpro radius-10" width="324" height="243">
+                          <img src="assets/images/pangan/<?php echo $d['nama_gambar'];?>" class="imgpro radius-10" width="324" height="243">
                           <div class=" mt-3">
-                            <h3 class="card-title text-center">Ketimun</h3>
-                              <div class="ms-5 fs-5" style="transform:translateY(30px) ;">Rp 17.000/kg</div> 
-                              <div class="text-end fs-3 me-5 mb-0 text-danger" style="transform:translateY(-10px) ;"><ion-icon name="arrow-up-outline"></ion-icon></div>
+                            <h3 class="card-title text-center"><?php echo $d['nama_pangan'];?></h3>
+                              <div class="ms-5 fs-5" style="transform:translateY(30px) ;"><?php echo $d['harga_baru'];?></div> 
+
+
+                              <?php 
+
+                              $hargalama =  $d['harga_lama'];
+                              $hargabaru =  $d['harga_baru'];
+                              $status = "";
+
+                              
+
+                              if($hargalama == $hargabaru){
+                                $status = "stabil";
+                              }else if($hargalama <= $hargabaru){
+                                $status = "naik";
+                              }else if($hargalama >= $hargabaru){
+                                $status = "turun";
+                              }
+
+
+                              if( $status == "turun"){
+                                    
+                                    
+                                ?>
+
+                              <div class="text-end fs-3 me-5 mb-0 text-success" style="transform:translateY(-10px)translateX(-5px) ;"><ion-icon name="arrow-down-outline"></ion-icon></div>
+                              <p class="text-end me-5"> <?= $status;?></p>
+                               
+
+                              <?php
+
+                              }else if($status == "naik"){
+
+                              ?>
+
+
+                              <div class="text-end fs-3 me-5 mb-0 text-danger" style="transform:translateY(-10px);"><ion-icon name="arrow-up-outline"></ion-icon></div>
+                              <p class="text-end me-5"> <?= $status;?></p>
+
+                              <?php
+
+                              }else if($status == "stabil"){
+                                ?>
+
+                              <div class="text-end fs-3 me-5 mb-0 text-dark" style="transform:translateY(-10px) translateX(-5px) ;"> <ion-icon name="reorder-two-outline"></ion-icon></div>
+                              <p class="text-end me-5"> <?= $status;?></p>
+
+                              <?php
+
+
+
+                              }
+                              
+                              
+                              ?>
+
+
+                              
                                 
                             <!-- <a href="#" class="btn bg-gradient-success px-4 radius-10 text-white">Read More</a> -->
                           </div>
@@ -107,35 +182,11 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-sm-12 ">
-                      <div class="card radius-10">
-                        <div class="card-body">
-                          <img src="assets/images/products/6.jpg" class="imgpro radius-10" width="324" height="243">
-                          <div class=" mt-3">
-                            <h3 class="card-title text-center">Rica</h3>
-                              <div class="ms-5 fs-5" style="transform:translateY(30px) ;">Rp 18.000/L</div> 
-                              <div class="text-end fs-3 me-5 mb-0 text-success" style="transform:translateY(-10px) ;"><ion-icon name="arrow-down-outline"></ion-icon></div>
-                                
-                            <!-- <a href="#" class="btn bg-gradient-success px-4 radius-10 text-white">Read More</a> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-sm-12 ">
-                      <div class="card radius-10">
-                        <div class="card-body">
-                          <img src="assets/images/products/8.jpg" class="imgpro radius-10" width="324" height="243">
-                          <div class=" mt-3">
-                            <h3 class="card-title text-center">Lemon</h3>
-                              <div class="ms-5 fs-5" style="transform:translateY(30px) ;">Rp 18.000/L</div> 
-                              <div class="text-end fs-3 me-5 mb-0 text-dark" style="transform:translateY(-10px) ;"> <ion-icon name="reorder-two-outline"></ion-icon></div>
-                                
-                            <!-- <a href="#" class="btn bg-gradient-success px-4 radius-10 text-white">Read More</a> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                   <?php
+                   
+                  }
+                   
+                   ?>
 
                    
                   

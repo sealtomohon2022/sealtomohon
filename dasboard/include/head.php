@@ -6,8 +6,9 @@ session_start();
 if(!isset($_SESSION['nama'])){
   echo "
   <script>
-    window.location.href='../login/'; 
     alert('Harus Login terlebih dahulu!!'); 
+    window.location.href='../login/'; 
+    
   </script>";
 }
 
@@ -29,6 +30,7 @@ if(!isset($_SESSION['nama'])){
     <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +41,14 @@ if(!isset($_SESSION['nama'])){
 
     <title>Dashboard</title>
   </head>
+
+  
+
+
+
   <body>
+
+
     
 
  <!--start wrapper-->
@@ -60,12 +69,29 @@ if(!isset($_SESSION['nama'])){
         <!--navigation-->
         <ul class="metismenu" id="menu">
           <li>
-            <a>
+            <a href="index.php">
               <div class="parent-icon"><ion-icon name="home-sharp"></ion-icon>
               </div>
               <div class="menu-title">Dashboard</div>
             </a>
           </li>
+
+          <li>
+            <a href="hlmpangan.php">
+              <div class="parent-icon"><ion-icon name="documents"></ion-icon>
+              </div>
+              <div class="menu-title">Daftar Pangan</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="hlmpegawai.php">
+              <div class="parent-icon"><ion-icon name="people"></ion-icon>
+              </div>
+              <div class="menu-title">Pegawai</div>
+            </a>
+          </li>
+
         </ul>
         <!--end navigation-->
      </aside>
@@ -75,34 +101,34 @@ if(!isset($_SESSION['nama'])){
           <header class="top-header">
             <nav class="navbar navbar-expand gap-3">
               <div class="mobile-menu-button"><ion-icon name="menu-sharp"></ion-icon></div>
-              <form class="searchbar">
+              <!-- <form class="searchbar">
                 <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><ion-icon name="search-sharp"></ion-icon></div>
                 <input class="form-control" type="text" placeholder="Search for anything">
                 <div class="position-absolute top-50 translate-middle-y search-close-icon"><ion-icon name="close-sharp"></ion-icon></div>
-             </form>
+             </form> -->
              <div class="top-navbar-right ms-auto">
 
               <ul class="navbar-nav align-items-center">
-                <li class="nav-item mobile-search-button ">
+                <!-- <li class="nav-item mobile-search-button ">
                   <a class="nav-link" href="javascript:;">
                     <div class="">
                       <ion-icon name="search-sharp"></ion-icon>
                     </div>
                   </a>
-                </li>
+                </li> -->
                 
         
                 <li class="nav-item dropdown dropdown-user-setting">
                   <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
                     <div class="user-setting">
-                      <img src="../assets/images/avatar/1.HEIC" class="user-img" alt="">
+                      <img src="../assets/images/avatar/siluet1.png" class="user-img" alt="">
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                        <a class="dropdown-item" href="javascript:;">
                          <div class="d-flex flex-row align-items-center gap-2">
-                            <img src="../assets/images/avatar/1.HEIC" alt="" class="rounded-circle" width="54" height="54">
+                            <img src="../assets/images/avatar/siluet1.png" alt="" class="rounded-circle" width="54" height="54">
                             <div class="">
                               <h6 class="mb-0 dropdown-user-name">Edoedo</h6>
                               <small class="mb-0 dropdown-user-designation text-secondary">Administrator</small>
@@ -145,19 +171,4 @@ if(!isset($_SESSION['nama'])){
           <!-- start page content-->
           <div class="page-content">
 
-              <!--start breadcrumb-->
-              <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-
-                <div class="breadcrumb-title pe-3">Dashboard</div>
-                <div class="ps-3">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0 align-items-center">
-                      <li class="breadcrumb-item"><a href="javascript:;"><ion-icon name="home-outline"></ion-icon></a>
-                      </li>
-                    </ol>
-                  </nav>
-                </div>
-
               
-              </div>
-              <!--end breadcrumb-->

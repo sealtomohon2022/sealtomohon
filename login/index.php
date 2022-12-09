@@ -77,11 +77,11 @@
                         <form class="form-body row g-3" action="proses_login.php" method="POST">
                             <div class="col-12">
                             <label for="inputUsername" class="form-label">Username</label>
-                            <input type="text" name="user" class="form-control" id="inputUsername" placeholder="Masukan Username" required>
+                            <input type="text" name="user" class="form-control" id="inputUsername" placeholder="Masukan Username" autocomplete="off" required>
                             </div>
                             <div class="col-12">
                             <label for="inputPassword" class="form-label">Password</label>
-                            <input type="password" name="pass" class="form-control" id="inputPassword" placeholder="Masukan Password" required>
+                            <input type="password" name="pass" class="form-control" id="inputPassword" placeholder="Masukan Password" autocomplete="off" required>
                             </div>
                            
                             <div class="col-12 col-lg-12">
