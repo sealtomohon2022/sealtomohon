@@ -60,9 +60,9 @@ include "koneksi/koneksi.php";
                         </div>
                         </a>
                         </li> -->
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                         <a class="nav-link text-white active m-2 bg-gradient-success radius-10 p-3 " href="login/"> Login</a>
-                        </li> -->
+                        </li>
                     </ul>
                     </div>
                 </div>
@@ -71,6 +71,45 @@ include "koneksi/koneksi.php";
 
             <!-- mulai slideshow -->
             <div class="slideshow">
+
+              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators" style="transform: translateY(-200px);">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner" >
+                  <div class="carousel-item active">
+                    <img src="assets/images/products/1.jpg" width="100%" height="500px" style="transform: translateY(-200px);">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>First slide label</h5>
+                      <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/images/products/15.jpg"  width="100%" height="500px" style="transform: translateY(-200px);">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Second slide label</h5>
+                      <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/images/products/13.jpg"  width="100%" height="500px" style="transform: translateY(-200px);">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Third slide label</h5>
+                      <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" style="transform: translateY(-100px);">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="transform: translateY(-100px);">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
 
             </div>
             <!-- akhir slideshow -->
@@ -84,9 +123,9 @@ include "koneksi/koneksi.php";
               <!-- search -->
               <div class="card bg-gradient-success p-3 radius-10">
                 <div class="card-body d-flex justify-content-center " >
-                    <form class="searchbar">
+                    <form class="searchbar" action="" >
                         <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><ion-icon name="search-sharp"></ion-icon></div>
-                        <input class="form-control text-center" type="text" placeholder="Cari harga bahan pangan">
+                        <input class="form-control text-center" type="text" placeholder="Cari nama bahan pangan" autocomplete="off" id="key">
                     </form>
                 </div>
               </div>
@@ -95,7 +134,7 @@ include "koneksi/koneksi.php";
 
               <!-- produk -->
 
-                  <div class="row">
+                  <div class="row" id="forsearch">
 
 
                   <?php 
@@ -105,6 +144,22 @@ include "koneksi/koneksi.php";
 
 
                   foreach($data as $d){
+
+
+                              $hargalama =  $d['harga_lama'];
+                              $hargabaru =  $d['harga_baru'];
+                              $status = "";
+
+
+                              if($hargalama == 0){
+                                $status = "None";
+                              }else if($hargalama == $hargabaru){
+                                $status = "Stabil";
+                              }else if($hargalama <= $hargabaru){
+                                $status = "Naik";
+                              }else if($hargalama >= $hargabaru){
+                                $status = "Turun";
+                              }
 
                   
                   
@@ -117,63 +172,99 @@ include "koneksi/koneksi.php";
                           <img src="assets/images/pangan/<?php echo $d['nama_gambar'];?>" class="imgpro radius-10" width="324" height="243">
                           <div class=" mt-3">
                             <h3 class="card-title text-center"><?php echo $d['nama_pangan'];?></h3>
-                              <div class="ms-5 fs-5" style="transform:translateY(30px) ;"><?php echo $d['harga_baru'];?></div> 
+                            <div class="row">
+                              
 
+                              <?php if($hargalama == 0) {
+                                ?>
+                                  <div class="col-11  text-center" style="transform: translateX(15px);">
+                                  <span style="color: transparent;"> test</span><br>
+                                  <label class="fs-4">Harga Terkini</label>
+                                  <p class="fs-5">Rp.
+                                    <?php echo number_format($d['harga_baru'] );
+                                    ?>
+                                  </p>
+                                  </div> 
+
+                                  <div class="col-1">
+                              <?php
+                              }else {
+
+                                ?>
+                                <div class="col-8">
+                                    <label class="font-harga">Harga Sebelum</label>
+                                    Rp.<?php echo number_format($d['harga_lama']);?><br>
+                                    <label class="fs-4">Harga Terkini</label>
+                                    <p class="fs-5">Rp.
+                                      <?php echo number_format($d['harga_baru'] );
+                                      ?>
+                                    </p>
+                                    </div> 
+
+                                    <div class="col-4" style="transform: translateX(15px);">
+                              <?php
+                              } 
+                              ?>
+                                
+
+                                
+                                
+                              
 
                               <?php 
 
-                              $hargalama =  $d['harga_lama'];
-                              $hargabaru =  $d['harga_baru'];
-                              $status = "";
-
                               
 
-                              if($hargalama == $hargabaru){
-                                $status = "stabil";
-                              }else if($hargalama <= $hargabaru){
-                                $status = "naik";
-                              }else if($hargalama >= $hargabaru){
-                                $status = "turun";
-                              }
 
+                              if($status == "None"){
+                                ?>
 
-                              if( $status == "turun"){
+                              <div class="text-end fs-3 me-5 mb-0 text-dark" style="transform:translateY(10px) translateX(-5px) ;"> <ion-icon name=""></ion-icon></div>
+                              <p class="text-end me-3" style="color: transparent;">  d </p>
+                             
+                                
+
+                                <?php
+                              }else if( $status == "Turun"){
                                     
                                     
                                 ?>
 
-                              <div class="text-end fs-3 me-5 mb-0 text-success" style="transform:translateY(-10px)translateX(-5px) ;"><ion-icon name="arrow-down-outline"></ion-icon></div>
+                              <div class="text-end fs-3 me-5 mb-0 text-success" style="transform:translateY(10px)translateX(-5px) ;"><ion-icon name="arrow-down-outline"></ion-icon></div>
                               <p class="text-end me-5"> <?= $status;?></p>
                                
 
                               <?php
 
-                              }else if($status == "naik"){
+                              }else if($status == "Naik"){
 
                               ?>
 
 
-                              <div class="text-end fs-3 me-5 mb-0 text-danger" style="transform:translateY(-10px);"><ion-icon name="arrow-up-outline"></ion-icon></div>
+                              <div class="text-end fs-3 me-5 mb-0 text-danger" style="transform:translateY(10px);"><ion-icon name="arrow-up-outline"></ion-icon></div>
                               <p class="text-end me-5"> <?= $status;?></p>
 
                               <?php
 
-                              }else if($status == "stabil"){
+                              }else if($status == "Stabil"){
                                 ?>
-
-                              <div class="text-end fs-3 me-5 mb-0 text-dark" style="transform:translateY(-10px) translateX(-5px) ;"> <ion-icon name="reorder-two-outline"></ion-icon></div>
+                              
+                              <div class="text-end fs-3 me-5 mb-0 text-dark" style="transform:translateY(10px) translateX(-5px) ;"> <ion-icon name="reorder-two-outline"></ion-icon></div>
                               <p class="text-end me-5"> <?= $status;?></p>
 
                               <?php
 
 
 
-                              }
+                              } 
                               
                               
                               ?>
 
 
+                                </div>
+
+                              </div>
                               
                                 
                             <!-- <a href="#" class="btn bg-gradient-success px-4 radius-10 text-white">Read More</a> -->
@@ -210,8 +301,8 @@ include "koneksi/koneksi.php";
                       Jl. Sawangan, Lansot <br />
                       Kec. Tomohon Selatan<br />
                       Kota Tomohon, Sulawesi Utara <br /><br />
-                      <strong>Phone:</strong> 0858-2340-4770<br />
-                      <strong>Email:</strong> pedrorapar@gmail.com<br />
+                      <strong>Phone : </strong> - <br />
+                      <strong>Email : </strong> - <br />
                     </p>
                   </div>
                 </div>
@@ -252,6 +343,7 @@ include "koneksi/koneksi.php";
         <script src="assets/js/index.js"></script>
         <!-- Main JS-->
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/livesearch.js"></script>
 
     </body>
 </html>

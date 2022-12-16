@@ -2,8 +2,8 @@
 
 include "../../koneksi/koneksi.php";
 
-$namapangan = $_POST['nama'];
-$hargapangan = $_POST['harga'];
+$namapangan = htmlspecialchars($_POST['nama']);
+$hargapangan = htmlspecialchars($_POST['harga']);
 
 
 $direktori = "../../assets/images/pangan/";

@@ -1,7 +1,9 @@
-
 <?php
 
+
+
 session_start();
+
 
 if(!isset($_SESSION['nama'])){
   echo "
@@ -11,6 +13,13 @@ if(!isset($_SESSION['nama'])){
     
   </script>";
 }
+
+$namas = $_SESSION['nama'];
+
+
+
+$data = mysqli_query($koneksi, "SELECT * FROM user WHERE `user`.`nama`='$namas'");
+$d = mysqli_fetch_array($data);
 
 ?>
 
@@ -84,13 +93,35 @@ if(!isset($_SESSION['nama'])){
             </a>
           </li>
 
-          <li>
+          <?php
+
+          if($_SESSION['role'] == "admin"){
+
+            ?>
+
+            <li>
             <a href="hlmpegawai.php">
               <div class="parent-icon"><ion-icon name="people"></ion-icon>
               </div>
               <div class="menu-title">Pegawai</div>
             </a>
           </li>
+            
+            <?php
+
+          }else if($_SESSION['role'] == "pegawai"){
+
+            ?>
+            
+            <span> </span>
+            
+            <?php
+
+          }
+          
+          ?>
+
+          
 
         </ul>
         <!--end navigation-->
@@ -130,21 +161,13 @@ if(!isset($_SESSION['nama'])){
                          <div class="d-flex flex-row align-items-center gap-2">
                             <img src="../assets/images/avatar/siluet1.png" alt="" class="rounded-circle" width="54" height="54">
                             <div class="">
-                              <h6 class="mb-0 dropdown-user-name">Edoedo</h6>
-                              <small class="mb-0 dropdown-user-designation text-secondary">Administrator</small>
+                              <h6 class="mb-0 dropdown-user-name"><?php echo $_SESSION['nama'] ;?></h6>
+                              <small class="mb-0 dropdown-user-designation text-secondary"><?php echo $d['posisi'];?></small>
                             </div>
                          </div>
                        </a>
                      </li>
-                     <li><hr class="dropdown-divider"></li>
-                     <li>
-                        <a class="dropdown-item" href="javascript:;">
-                           <div class="d-flex align-items-center">
-                             <div class=""><ion-icon name="person-outline"></ion-icon></div>
-                             <div class="ms-3"><span>Profile</span></div>
-                           </div>
-                         </a>
-                      </li>
+                    
                       
                       <li><hr class="dropdown-divider"></li>
                       <li>
