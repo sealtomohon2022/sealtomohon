@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 include "../../koneksi/koneksi.php";
@@ -17,74 +17,77 @@ header("Expires: 0");
 ?>
 
 <html>
-    <head></head>
-    <body>
 
-        <p>
+<head></head>
 
-        <h3>Data Harga Bahan Pangan Kota Tomohon</h3>
+<body>
 
-        <h4>Data per : 
-            <?php 
-                $mydate=getdate(date("U"));
-                echo "$mydate[mday] $mydate[month] $mydate[year]";
-            ?>
-        </h4>
-        
-        </p>
+    <p>
 
-        <table border="1" style="text-align: center;">
-            <thead>
-                <tr>
-                    <th width="100">No</th>
-                    <th width="200">Nama Pangan</th>
-                    <th width="100">Harga Sebelum</th>
-                    <th width="100">Harga Terkini</th>
-                    <th width="100">Tanggal Perbarui Harga</th>
-                    <th width="100">Status Harga</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            <?php 
+    <h3>Data Harga Bahan Pangan Kota Tomohon</h3>
+
+    <h4>Data per :
+        <?php
+        $mydate = getdate(date("U"));
+        echo "$mydate[mday] $mydate[month] $mydate[year]";
+        ?>
+    </h4>
+
+    </p>
+
+    <table border="1" style="text-align: center;">
+        <thead>
+            <tr>
+                <th width="100">No</th>
+                <th width="200">Nama Pangan</th>
+                <th width="100">Harga Sebelum</th>
+                <th width="100">Harga Terkini</th>
+                <th width="100">Tanggal Perbarui Harga</th>
+                <th width="100">Status Harga</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
             $no = 1;
-            foreach ($data as $d){
+            foreach ($data as $d) {
 
                 $hargalama =  $d['harga_lama'];
                 $hargabaru =  $d['harga_baru'];
                 $status = "";
 
-                
-                if($hargalama == 0){
+
+                if ($hargalama == 0) {
                     $status = "";
-                }else if($hargalama == $hargabaru){
+                } else if ($hargalama == $hargabaru) {
                     $status = "stabil";
-                }else if($hargalama <= $hargabaru){
+                } else if ($hargalama <= $hargabaru) {
                     $status = "naik";
-                }else if($hargalama >= $hargabaru){
+                } else if ($hargalama >= $hargabaru) {
                     $status = "turun";
                 }
 
-                
 
-                ?>
+
+            ?>
                 <tr style="text-align: center;">
-                    <td><?php echo $no++;?></td>
-                    <td><?php echo $d['nama_pangan'];?></td>
-                    <td><?php echo number_format($d['harga_lama']);?></td>
-                    <td><?php echo number_format($d['harga_baru']);?></td>
-                    <td><?php echo $d['tanggal'];?></td>
-                    <td><?php echo $status;?></td>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $d['nama_pangan']; ?></td>
+                    <td><?php echo number_format($d['harga_lama']); ?></td>
+                    <td><?php echo number_format($d['harga_baru']); ?></td>
+                    <td><?php echo $d['tanggal']; ?></td>
+                    <td><?php echo $status; ?></td>
                 </tr>
 
 
-                <?php
+            <?php
             }
-            
-            
+
+
             ?>
 
-            </tbody>
-        </table>
-    </body>
+        </tbody>
+    </table>
+</body>
+
 </html>
