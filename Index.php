@@ -259,7 +259,7 @@ include "koneksi/koneksi.php";
                             <ion-icon name="arrow-up-outline"></ion-icon>
                           </div>
 
-                          <p class="text-end me-5 text-warning mt-2"> <?= number_format($persen); ?> %</p>
+                          <p class="text-end me-5 text-danger mt-2"> <?= number_format($persen); ?> %</p>
 
 
                         <?php
