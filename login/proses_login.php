@@ -14,12 +14,12 @@ $row = mysqli_num_rows($sql);
 
         if($selek["role"]=="admin"){
             session_start();
-            $_SESSION['nama'] = $selek['username'];
+            $_SESSION['nama'] = $selek['nama'];
             $_SESSION['role'] = $selek['role'];
             header("location:../dasboard/");
         }else if($selek["role"]=="pegawai"){
             session_start();
-            $_SESSION['nama'] = $selek['username'];
+            $_SESSION['nama'] = $selek['nama'];
             $_SESSION['role'] = $selek['role'];
             header("location:../dasboard/");
         }
@@ -32,5 +32,3 @@ $row = mysqli_num_rows($sql);
         </script>";
         
     }
-
-?>

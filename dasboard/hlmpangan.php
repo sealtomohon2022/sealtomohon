@@ -4,6 +4,7 @@ include "../koneksi/koneksi.php";
 include "include/head.php";
 
 $data = mysqli_query($koneksi, "SELECT * FROM user");
+$selek = mysqli_fetch_array($data);
 
 
 ?>
@@ -70,6 +71,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM user");
               </div><br>
             </div><br><br>
             <div class="modal-footer">
+              <input type="hidden" value="<?= $selek['nama']; ?>" name="pengubah">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
               <button type="submit" name="proses" class="btn btn-success me-5">Simpan</button>
           </form>
@@ -203,7 +205,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM user");
 
                   <div class="mb-0 text-danger d-flex ms-5">
                     <ion-icon name="arrow-up-outline" class="fs-3 text-start"></ion-icon>
-                    <p class="text-end me-5 text-warning mt-2"> <?= number_format($persen); ?> %</p>
+                    <p class="text-end me-5 text-danger mt-2"> <?= number_format($persen); ?> %</p>
                   </div>
 
                 <?php
