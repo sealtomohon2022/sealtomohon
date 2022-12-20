@@ -8,15 +8,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM pangan WHERE nama_pangan LIKE '%$k
 
 
 
-
-
-
-
-
 foreach ($data as $d) {
-
-
-
 
 
 

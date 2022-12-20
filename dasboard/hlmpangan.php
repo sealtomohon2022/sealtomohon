@@ -108,62 +108,59 @@ $selek = mysqli_fetch_array($data);
     <div class="d-flex align-items-center">
       <h5 class="mb-0">Data Bahan Pangan</h5>
     </div>
-<<<<<<< HEAD
 
 
-    <?php 
-    
-    if(isset($_SESSION['alert'])){
-      
-      if($_SESSION['alert'] == "gagal"){
-          ?>
-          
-          <!-- alert -->
-          <div class="alert alert-dismissible fade show py-2 mb-0">
-                <div class="d-flex align-items-center">
-                  <div class="fs-3 text-danger"><ion-icon name="close-circle-sharp"></ion-icon>
-                  </div>
-                  <div class="ms-3">
-                    <div class="text-danger"><?= $_SESSION['pesan'];?></div>
-                  </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-          <!-- akhir alert -->
-          
-          <?php
+    <?php
 
-          unset($_SESSION['alert']);
-      }else if($_SESSION['alert'] == "success"){
-        ?>
-        
-         <!-- alert -->
-              <div class="alert alert-dismissible fade show py-2 mb-0">
-                <div class="d-flex align-items-center">
-                  <div class="fs-3 text-success"><ion-icon name="checkmark-circle-sharp"></ion-icon>
-                  </div>
-                  <div class="ms-3">
-                    <div class="text-success"><?= $_SESSION['pesan'];?></div>
-                  </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-          <!-- akhir alert -->
-        
-        <?php
+    if (isset($_SESSION['alert'])) {
 
-          unset($_SESSION['alert']);
+      if ($_SESSION['alert'] == "gagal") {
+    ?>
+
+        <!-- alert -->
+        <div class="alert alert-dismissible fade show py-2 mb-0">
+          <div class="d-flex align-items-center">
+            <div class="fs-3 text-danger">
+              <ion-icon name="close-circle-sharp"></ion-icon>
+            </div>
+            <div class="ms-3">
+              <div class="text-danger"><?= $_SESSION['pesan']; ?></div>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <!-- akhir alert -->
+
+      <?php
+
+        unset($_SESSION['alert']);
+      } else if ($_SESSION['alert'] == "success") {
+      ?>
+
+        <!-- alert -->
+        <div class="alert alert-dismissible fade show py-2 mb-0">
+          <div class="d-flex align-items-center">
+            <div class="fs-3 text-success">
+              <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            </div>
+            <div class="ms-3">
+              <div class="text-success"><?= $_SESSION['pesan']; ?></div>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <!-- akhir alert -->
+
+    <?php
+
+        unset($_SESSION['alert']);
       }
-    
     }
 
     ?>
 
-    
 
 
-=======
->>>>>>> d4f67b21f5945f1edac57159628320fa8f6044a5
     <div class="table-responsive mt-3">
       <table id="dt" class="table  table-striped table-bordered   align-middle text-center ">
         <thead class="bg-success text-white">
