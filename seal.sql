@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2022 pada 15.06
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Generation Time: Dec 20, 2022 at 04:27 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pangan`
+-- Table structure for table `pangan`
 --
 
 CREATE TABLE `pangan` (
@@ -38,22 +38,31 @@ CREATE TABLE `pangan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pangan`
+-- Dumping data for table `pangan`
 --
 
 INSERT INTO `pangan` (`id`, `nama_pangan`, `harga_lama`, `harga_baru`, `nama_gambar`, `tanggal`, `pengubah`) VALUES
-(1, 'Ketimun', 20000, 25000, '6392510ad856b.jpg', '2022-12-13', 'test'),
-(2, 'Rica', 20000, 25000, '6392597924b43.jpg', '2022-12-14', 'test'),
-(3, 'Wortel', 10000, 10000, '63925a6be73ab.jpg', '2022-12-10', 'test'),
-(4, 'Bungan Kol', 8000, 6000, '6392974a91d84.jpg', '2022-12-14', 'test2'),
-(5, 'tomat', 6000, 3000, '6392999534333.jpg', '2022-12-15', 'enumerator'),
-(7, 'Bawang Putih', 18000, 15000, '6395f69c4cef7.jpg', '2022-12-14', 'test'),
-(8, 'Jeruk Ikan', 0, 18000, '6397d91c1cac0.jpg', '2022-12-13', 'test');
+(13, 'Beras Premium', 11800, 12000, '639ff83fdb5ef.jpg', '2022-12-19', 'Administrator'),
+(14, 'Beras Medium', 11300, 11500, '639ffa3b52e4f.png', '2022-12-19', 'Administrator'),
+(15, 'Jagung Pipilan', 5500, 5500, '639ffabf03e65.jpg', '2022-12-19', 'Administrator'),
+(17, 'Bawang Merah', 50000, 50000, '639ffb7103e81.jpg', '2022-12-19', 'Administrator'),
+(18, 'Bawang Putih', 28000, 28000, '639ffc7f31781.jpg', '2022-12-19', 'Administrator'),
+(19, 'Cabe M. Keriting', 15000, 18000, '639ffd269628b.jpeg', '2022-12-19', 'Administrator'),
+(20, 'Cabe Rawit', 55000, 53000, '639ffd875b8da.jpg', '2022-12-19', 'Administrator'),
+(21, 'Daging Sapi ', 125000, 125000, '639ffdcfdaffa.jpg', '2022-12-19', 'Administrator'),
+(22, 'Daging Ayam Ras', 35000, 35000, '639ffe4ee3fe8.jpg', '2022-12-19', 'Administrator'),
+(23, 'Telur ayam Ras', 30000, 33000, '639ffe9283f4d.jpeg', '2022-12-19', 'Administrator'),
+(24, 'Daging Babi', 60000, 65000, '639ffee9ea9fb.jpeg', '2022-12-19', 'Administrator'),
+(25, 'Gula Pasir', 15000, 15000, '639fff4278907.jpg', '2022-12-19', 'Administrator'),
+(26, 'Minyak Goreng', 15000, 16000, '63a000894a55d.jpg', '2022-12-19', 'Administrator'),
+(27, 'Tepung Terigu', 12000, 12000, '63a001073c225.jpg', '2022-12-19', 'Administrator'),
+(28, 'Minyak goreng Curah', 12800, 13200, '63a0015b26ed6.jpg', '2022-12-19', 'Administrator'),
+(29, 'Tomat', 24000, 18000, '63a001a2c727b.jpeg', '2022-12-19', 'Administrator');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -69,45 +78,44 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `nama`, `posisi`, `alamat`, `no_hp`, `username`, `password`, `role`, `foto`) VALUES
-(16, 'test', 'kepala dinas', 'matani', ' 088558588', 'test', 'test', 'admin', 'siluet1.png'),
-(24, 'test2', 'admin', '-', '-', 'test2', 'test2', 'pegawai', 'siluet1.png'),
-(25, 'jemy', '-', '-', '-', 'enumerator', 'test', 'pegawai', 'siluet1.png');
+(26, 'Administrator', 'Staf IT', 'Kota Tomohon', '08xxxxxxxx', 'admin', 'admin', 'admin', 'siluet1.png'),
+(27, 'Pegawai', 'Kabid', 'Matani', '08xxxxxxxx', 'pegawai', 'pegawai', 'pegawai', 'siluet1.png');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `pangan`
+-- Indexes for table `pangan`
 --
 ALTER TABLE `pangan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `pangan`
+-- AUTO_INCREMENT for table `pangan`
 --
 ALTER TABLE `pangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
