@@ -108,6 +108,7 @@ $selek = mysqli_fetch_array($data);
     <div class="d-flex align-items-center">
       <h5 class="mb-0">Data Bahan Pangan</h5>
     </div>
+<<<<<<< HEAD
 
 
     <?php 
@@ -161,6 +162,8 @@ $selek = mysqli_fetch_array($data);
     
 
 
+=======
+>>>>>>> d4f67b21f5945f1edac57159628320fa8f6044a5
     <div class="table-responsive mt-3">
       <table id="dt" class="table  table-striped table-bordered   align-middle text-center ">
         <thead class="bg-success text-white">

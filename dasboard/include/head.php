@@ -5,7 +5,11 @@
 session_start();
 
 
+<<<<<<< HEAD
 if(!isset($_SESSION['status'])){
+=======
+if(!isset($_SESSION['nama'])){
+>>>>>>> d4f67b21f5945f1edac57159628320fa8f6044a5
   echo "
   <script>
     alert('Harus Login terlebih dahulu!!'); 

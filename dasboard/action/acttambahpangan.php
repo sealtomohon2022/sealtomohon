@@ -2,9 +2,12 @@
 
 include "../../koneksi/koneksi.php";
 
+<<<<<<< HEAD
 session_start();
 
 
+=======
+>>>>>>> d4f67b21f5945f1edac57159628320fa8f6044a5
 $namapangan = htmlspecialchars($_POST['nama']);
 $hargapangan = htmlspecialchars($_POST['harga']);
 $pengubah =  htmlspecialchars($_POST['pengubah']);
@@ -21,6 +24,7 @@ $ekstensiGambar = strtolower(end($ekstensiGambar));
 if (isset($_POST['proses'])) {
 
     if ($gambarError === 4) {
+<<<<<<< HEAD
         $_SESSION['alert'] = "gagal";
         $_SESSION['pesan'] = "Data tidak berhasil ditambahkan.";
         echo "<script>window.location.href='../hlmpangan.php';</script>";
@@ -32,6 +36,13 @@ if (isset($_POST['proses'])) {
         $_SESSION['alert'] = "gagal";
         $_SESSION['pesan'] = "Ukuran gambar terlalu besar!!";
         echo "<script>window.location.href='../hlmpangan.php';a</script>";
+=======
+        echo "<script>window.location.href='../hlmpangan.php';alert('Data tidak berhasil ditambahkan.')</script>";
+    } else if (!in_array($ekstensiGambar, $ekstensiValid)) {
+        echo "<script>window.location.href='../hlmpangan.php';alert('Salah upload gambar!')</script>";
+    } else if ($ukuranGambar > 3000000) {
+        echo "<script>window.location.href='../hlmpangan.php';alert('Ukuran gambar terlalu besar!!')</script>";
+>>>>>>> d4f67b21f5945f1edac57159628320fa8f6044a5
     } else {
         $namaBaru = uniqid();
         $namaBaru .= ".";
