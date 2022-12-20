@@ -91,8 +91,36 @@ include "include/head.php";
                       <input class="form-control ps-5" type="text" placeholder="search">
                     </form> -->
                 </div>
+
+
+                <?php 
+    
+    if(isset($_SESSION['alert'])){
+      ?>
+
+        <!-- alert -->
+             <div class="alert alert-dismissible fade show py-2 mb-0">
+                <div class="d-flex align-items-center">
+                  <div class="fs-3 text-success"><ion-icon name="checkmark-circle-sharp"></ion-icon>
+                  </div>
+                  <div class="ms-3">
+                    <div class="text-success"><?= $_SESSION['pesan'];?></div>
+                  </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+        <!-- akhir alert -->
+
+        <?php
+        unset($_SESSION['alert']);
+
+      }
+
+    ?>
+
+
                 <div class="table-responsive mt-3">
-                  <table id="dt"  class="table cell-border  align-middle text-center ">
+                  <table id="dt"  class="table  table-striped table-bordered   align-middle text-center " >
                     <thead class="bg-success text-white">
                       <tr>
                        <th>No</th>
@@ -100,7 +128,7 @@ include "include/head.php";
                        <th>Posisi</th>
                        <th>Alamat</th>
                        <th>No. HP</th>
-                       <th>Actions</th>
+                       <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -129,22 +157,98 @@ include "include/head.php";
                             <td>
                                 <a href="#" class="text-info p-2">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye" data-bs-toggle="tooltip" data-bs-placement="top"  title="Username : <?php echo htmlspecialchars($d['username']);?> | Password : <?php echo htmlspecialchars($d['password']);?> "><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye" data-bs-toggle="tooltip" data-bs-placement="top"  title="Username : <?php echo htmlspecialchars($d['username']);?> | Password : <?php echo htmlspecialchars($d['password']);?> | Role : <?php echo htmlspecialchars($d['role']);?> "><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
 
                                 </a>
 
                                 <span> | </span>
 
-                                <!-- <a href="<?php echo $d['id'];?>" class="text-warning p-2">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn  text-warning" data-bs-toggle="modal" data-bs-target="#editmodal<?php echo $no; ?>">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
 
-                                </a>
-                                <span> | </span> -->
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="editmodal<?php echo $no; ?>" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Edit Data User</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <form class="row" action="action/actedituser.php" method="POST">
+                                      <div class="modal-body text-start">
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Nama</label>
+                                            <input type="text" name="nama" class="form-control" value="<?php echo  htmlspecialchars($d['nama']);?>" autocomplete="off" required>
+                                          </div> <br>
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Posisi</label>
+                                            <input type="text" name="posisi" class="form-control" value="<?php echo  htmlspecialchars($d['posisi']);?>" autocomplete="off" required>
+                                          </div> <br>
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Alamat</label>
+                                            <input type="text" name="alamat" class="form-control" value="<?php echo  htmlspecialchars($d['alamat']);?>" autocomplete="off" required>
+                                          </div> <br>
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">No. Hp</label>
+                                            <input type="text" name="nohp" class="form-control" value="<?php echo  htmlspecialchars($d['no_hp']);?>" autocomplete="off" required>
+                                          </div> <br>
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" name="username" class="form-control" value="<?php echo  htmlspecialchars($d['username']);?>" autocomplete="off" required>
+                                          </div> <br>
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Password</label>
+                                            <input type="text" name="password" class="form-control" value="<?php echo  htmlspecialchars($d['password']);?>" autocomplete="off" required>
+                                          </div> 
+                                          <div class="col-lg-9 col-sm-11 ms-lg-5 ms-sm-4">
+                                            <label class="form-label">Role</label><br>
+                                            <select name="role">
+                                              <?php 
+
+                                              $role = $d['role'];
+                                              
+                                              if($role == "pegawai"){
+
+                                                ?>
+                                                <option value="pegawai" class="form-control">Pegawai</option>
+                                                <option value="admin" class="form-control">Admin</option>
+                                                <?php
+
+                                              }else {
+                                                ?>
+                                                
+                                                <option value="admin" class="form-control">Admin</option>
+                                                <option value="pegawai" class="form-control">Pegawai</option>
+                                                <?php
+                                              }
+                                              
+                                              
+                                              ?>
+                                                
+                                            </select>
+                                          </div>
+                                          <input type="hidden" name="id" value="<?php echo $d['id'];?>">
+                                      </div>
+                                      <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                      <button type="submit" class="btn btn-success me-3">Simpan</button>
+
+                                      </div>
+                                      </form>
+
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <span> | </span>
 
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn bg-white text-danger" data-bs-toggle="modal" data-bs-target="#hapusmodal<?php echo $no; ?>">
+                                <button type="button" class="btn  text-danger" data-bs-toggle="modal" data-bs-target="#hapusmodal<?php echo $no; ?>">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
 

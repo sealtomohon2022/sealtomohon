@@ -1,6 +1,8 @@
 <?php
 
 include "../koneksi/koneksi.php";
+session_start();
+
 
 $user = $_POST['user'];
 $pass = $_POST['pass'];
@@ -11,19 +13,26 @@ $selek = mysqli_fetch_array($sql);
 $row = mysqli_num_rows($sql);
 
     if($row >= 1){
+
         if($selek["role"]=="admin"){
-            session_start();
-            $_SESSION['nama'] = $selek['username'];
+            $_SESSION['status'] = "Sukses";
+            $_SESSION['nama'] = $selek['nama'];
+            $_SESSION['role'] = $selek['role'];
+            header("location:../dasboard/");
+        }else if($selek["role"]=="pegawai"){
+            $_SESSION['status'] = "Sukses";
+            $_SESSION['nama'] = $selek['nama'];
+            $_SESSION['role'] = $selek['role'];
             header("location:../dasboard/");
         }
     }else{
         
+        $_SESSION['status'] = "Gagal";
+
+
         echo "
         <script>
             window.location.href='index.php';
-            alert('Username atau Password Salah!!');
         </script>";
         
     }
-
-?>

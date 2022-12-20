@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['nama'])){
+    header("Location: ../dasboard/ ");
+  }
+
+
+?>
+
 <!doctype html>
 <html lang="en" class="light-theme">
     <head>
@@ -74,6 +85,38 @@
                         <div class="text-center">
                             <h4>Sign In</h4>
                         </div>
+
+
+                        <?php 
+                        
+                        if(isset($_SESSION['status'])){
+
+                            ?>
+                            
+                            <div class="alert alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-3 text-danger"><ion-icon name="close-circle-sharp"></ion-icon>
+                                    </div>
+                                    <div class="ms-3">
+                                        <div class="text-danger">Username atau Password Salah!!</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            
+                            
+                            <?php
+                            unset($_SESSION['status']);
+                        }
+
+                        ?>
+                        
+                            
+                            
+                          
+
+                       
+
                         <form class="form-body row g-3" action="proses_login.php" method="POST">
                             <div class="col-12">
                             <label for="inputUsername" class="form-label">Username</label>
